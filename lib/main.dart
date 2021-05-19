@@ -7,7 +7,13 @@ class Destini extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        fontFamily: 'Pacifico',
+        textTheme: TextTheme(
+            bodyText2: TextStyle(
+          color: Colors.white,
+        )),
+      ),
       home: StoryPage(),
     );
   }
@@ -44,6 +50,13 @@ class _StoryPageState extends State<StoryPage> {
                     storyBrain.getStory(),
                     style: TextStyle(
                       fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2, 2),
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -61,6 +74,7 @@ class _StoryPageState extends State<StoryPage> {
                   },
                   child: Text(
                     storyBrain.getChoice1(),
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
@@ -85,6 +99,7 @@ class _StoryPageState extends State<StoryPage> {
                     },
                     child: Text(
                       storyBrain.getChoice2(),
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20.0,
                       ),
