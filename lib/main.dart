@@ -41,7 +41,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    storyBrain.getStory()[0].storyTitle,
+                    storyBrain.getStory(),
                     style: TextStyle(
                       fontSize: 25.0,
                     ),
@@ -56,8 +56,8 @@ class _StoryPageState extends State<StoryPage> {
                     primary: Colors.white,
                   ),
                   onPressed: () {
-                    //Choice 1 made by user.
-                    //todo: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
+                    storyBrain.nextStory(choiceNumber: 1);
+                    setState(() {});
                   },
                   child: Text(
                     storyBrain.getChoice1(),
@@ -70,23 +70,24 @@ class _StoryPageState extends State<StoryPage> {
               SizedBox(
                 height: 20.0,
               ),
-              Expanded(
-                flex: 2,
-                //todo: Step 26 - Use a Flutter Visibility Widget to wrap this FlatButton.
-                //todo: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    //Choice 2 made by user.
-                    //todo: Step 19 - Call the nextStory() method from storyBrain and pass the number 2 as the choice made by the user.
-                  },
-                  child: Text(
-                    storyBrain.getChoice2(),
-                    style: TextStyle(
-                      fontSize: 20.0,
+              Visibility(
+                visible: storyBrain.buttonShouldBeVisible(),
+                child: Expanded(
+                  flex: 2,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      primary: Colors.white,
+                    ),
+                    onPressed: () {
+                      storyBrain.nextStory(choiceNumber: 2);
+                      setState(() {});
+                    },
+                    child: Text(
+                      storyBrain.getChoice2(),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
@@ -98,7 +99,3 @@ class _StoryPageState extends State<StoryPage> {
     );
   }
 }
-
-//todo: Step 24 - Run the app and try to figure out what code you need to add to this file to make the story change when you press on the choice buttons.
-
-//todo: Step 29 - Run the app and test it against the Story Outline to make sure you've completed all the steps. The code for the completed app can be found here: https://github.com/londonappbrewery/destini-challenge-completed/
